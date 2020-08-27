@@ -5,13 +5,15 @@ import sys
 def run():
     num = input('수를 입력하세요: ')
 
+    if num.isdigit():
+        num = int(num)
+        if num % 3 == 0:
+            print('3의 배수 입니다.')
+        else:
+            print('3의 배수가 아닙니다.')
 
-
-    num = int(num)
-    if num % 3 == 0:
-        print('3의 배수 입니다.')
     else:
-        print('3의 배수가 아닙니다.')
+        print('정수가 아닙니다.')
 
 if __name__ == "__main__":
     run()
