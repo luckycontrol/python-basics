@@ -11,7 +11,7 @@ round 함수 내에서 ndigits 인수에 값을 주어, 해당 자릿수부터 �
 '''
 
 def run():
-    float_input = float(input())ㄴ
+    float_input = float(input())
 
     float_list = frange(float_input)
     print(float_list)
