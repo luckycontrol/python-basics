@@ -4,10 +4,27 @@
 '''
 
 def run():
-    pass
+    input_arr = []
 
-def sum():
-    pass
+    while True:
+        arg = input('press "q" to exit')
+
+        if arg == 'q':
+            break
+        else:
+            input_arr.append(int(arg))
+
+    result_sum = sum(*input_arr)
+    print(result_sum)
+
+
+def sum(*args):
+    sum_result = 0
+
+    for i in args:
+        sum_result += i
+
+    return sum_result
 
 if __name__ == '__main__':
     run()
