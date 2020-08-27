@@ -1,13 +1,19 @@
 def run():
     float_input = float(input())
 
-    [print(float_num) for float_num in frange(float_input)]
+    float_list = frange(float_input)
+    print(float_list)
 
 def frange(val, start=0.0, step=0.1):
     frange_list = []
 
-    for float_num in range(0.0, val, 0.1):
-        frange_list.append(float_num)
+    while True:
+        if start >= val:
+            break
+
+        else:
+            frange_list.append(start)
+            start += step
 
     return frange_list
 
