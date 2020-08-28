@@ -1,41 +1,36 @@
+'''
+정규식 Raw String
+
+만약 백슬래시 두개를 표현해야 한다면 ex) \\
+p = re.complie('\\\\section') 과 같이 불편할것이다.
+따라서 Raw String을 사용하여 다음과 같이 표현한다.
+p = re.complie(r'\\section')
+'''
+
 import re
 
-s = """
-<html>
-    <body style='background-color:#fff'>
-        <h4>Click</h4>
-        <a href='http://www.python.org'>Here</a>
-        <p>
-            To connect to the most powerful tools in the world.
-        </p>
-    </body>
-</html>
-"""
+def run():
+    s = """
+    <html>
+        <body style='background-color:#fff'>
+            <h4>Click</h4>
+            <a href='http://www.python.org'>Here</a>
+            <p>
+                To connect to the most powerful tools in the world.
+            </p>
+        </body>
+    </html>
+    """
 
-s_split = s.split('\n')
+    p1 = re.compile(r"</?\w*\s?\w*=?'?\w*:?/?/?-?\w*.?\w*.?:?#?\w*'?>")
+    m1 = p1.findall(s)
 
-# p = re.compile("</?.*|>")
-#
-# m = p.findall(s)
-#
-# print(m)
+    print(m1)
 
-# for word in m:
-#     s = s.replace(word, '')
-#
-# print(s)
+    for word in m1:
+        s = s.replace(word, '')
 
+    print(s)
 
-
-    # for word_index in range(len(line)):
-    #     if len(line) <= 0:
-    #         break
-    #
-    #     if line[word_index] == '<':
-    #         switch = True
-    #     elif line[word_index] == '>':
-    #         switch = False
-    #
-    #     if switch is True:
-    #         line = line.replace(line[word_index], '')
-
+if __name__ == '__main__':
+    run()
