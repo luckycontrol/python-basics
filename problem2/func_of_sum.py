@@ -3,6 +3,8 @@
 함수 sum을 만든다. 함수는 임의의 갯수의 인수를 받아서 그 합을 계산한다.
 '''
 
+from functools import reduce
+
 def run():
     input_arr = []
 
@@ -19,12 +21,8 @@ def run():
 
 
 def sum(*args):
-    sum_result = 0
 
-    for i in args:
-        sum_result += i
-
-    return sum_result
+    return reduce(lambda x, y: x + y, args)
 
 if __name__ == '__main__':
     run()
