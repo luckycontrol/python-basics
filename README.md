@@ -32,6 +32,21 @@ print(list(filter(lambda x: x % 2 == 0, arr1)))
 print(reduce(lambda x, y: x + y, arr1))
 ```
 
+## Python Regex ( 정규식 )
+> Raw String을 사용하는 이유
+
+정규식 Raw String
+
+만약 백슬래시 두개를 표현해야 한다면 ex) \\\
+```python
+p = re.complie('\\\\section') 
+```  
+과 같이 불편할것이다.  
+따라서 Raw String을 사용하여 다음과 같이 표현한다.
+```python
+p = re.complie(r'\\section')
+```  
+
 ## Python Float 연산
 > 하드웨어에서 계산되는 2진 부동소수점을 이해할 필요가 있다.
 
