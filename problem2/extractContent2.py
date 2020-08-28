@@ -22,10 +22,8 @@ def run():
 
     print()
 
-    # 문자 - 갯수 출력
-    result_dic = {}
-    for word in s_split:
-        result_dic.update({word: s_split.count(word)})
+    # dict - 문자 : 갯수 담기
+    result_dic = {word: s_split.count(word) for word in s_split}
 
     for k, v in result_dic.items():
         print(f'{k} : {v}')
