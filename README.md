@@ -1,4 +1,4 @@
-# PYTHON - BASICS
+jong# PYTHON - BASICS
 
 > 기억하고 싶은 것들
 
@@ -45,7 +45,7 @@ print(reduce(lambda x, y: x + y, arr1))
 대문자로 사용된 것은 소문자의 반대임을 추측할 수 있다.  
 
 
-> **Raw String**을 사용하는 이유
+> **Raw String**을 사용하는 이유  
 정규식 Raw String
 
 만약 백슬래시 두개를 표현해야 한다면 ex) \\\
@@ -77,3 +77,66 @@ round(float_number, 2)
 round(float_number, 7)
 
 ``` 
+
+## Python Virtual Environment ( Isolation Tool )
+> 하나의 파이썬 설치가 모든 응용프로그램의 요구 사항을 충족시켜 줄 수 없다.  
+>A는 1.0 버전이 필요하지만, B는 2.0이 필요한 경우..
+
+**가상환경 설치 방법**
+1. 프로젝트 폴더 생성 후 진입
+2. python3 -m venv [가상환경이름] ex) python3 -m venv venv
+3. source [가상환경이름]/bin/activate  
+  
+위 작업 이후 쉘이 (venv) $python3로 변경됨  
+  
+deactivate 으로 환경 나가기
+
+> pip로 패키지 관리  
+
+[serach], [install], [uninstall], [freeze]등의 부속명령어가 있다.  
+```commandline
+pip install novas
+```  
+패키지 이름 뒤에 **==** 과 버전 번호를 붙여 특정 버전의 패키지를 설치할 수 있다.
+```commandline
+pip install requests==2.6.0
+```  
+패키지를 최신 버전으로 업그레이드 하기
+```commandline
+pip install --upgrade [패키지이름]
+```
+가상환경에 설치된 패키지 목록 표시
+```commandline
+pip list
+```
+
+## Python DB 연결 (MariaDB)
+> 파이썬과 MariaDB 연결
+
+1. PyMySQL 모듈 설치
+2. 파이썬과 DB 연결  
+```python
+import pymysql
+
+# db connection 열기
+db = pymysql.connect(
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='passwd',
+    db='db',
+    charset='utf8',
+    autocommit=True
+)
+
+# cursor object로 db와의 작업을 수행한다.
+cursor = db.cursor()
+# show tables 쿼리 실행
+cursor.execute("show tables")
+# fetchall()로 모든 테이블 정보를 Fetch
+data = cursor.fetchall()
+
+print(data)
+
+db.close()
+```
