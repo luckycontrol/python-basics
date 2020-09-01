@@ -2,6 +2,50 @@ jong# PYTHON - BASICS
 
 > 기억하고 싶은 것들
 
+## 심볼 테이블 ( Symbol Table )
+> 파이썬에서 객체의 이름과 주소를 딕셔너리 형태로 저장하는 것을 '심볼 테이블' 이라고 한다.
+
+### 심볼 테이블이란,
+1. 변수의 이름과 데이터의 주소를 저장하는 테이블
+2. Global table과 Local table이 있다.
+3. 테이블 내용은 딕셔너리 형태.
+
+> Local Table은 객체가 존재하는동안 일시적으로 존재하다 사라진다.
+
+심볼테이블이 존재한다는 것은 객체의 확장이 가능하다는 것이다.
+> 내장 함수는 심볼테이블이 존재하지 않고, 내장 클래스의 객체는 심볼테이블이 존재하지만 확장 불가능하다.
+
+ ![screensh](SymbolTable.PNG)
+ 
+### 객체 비교,
+20글자 이하의 문자열, -5 ~ 256 내의 값은 Optimization를 위하여 이미 해당 값의 객체가 생성되었다면, 그 값으로 연결시켜준다.  
+리스트와 튜플의 경우 값이 같아도 다른 객체를 참조한다.    
+```python
+i1 = 10
+i2 = 10
+print(i1 is i2) # True
+
+s1 = "Hello"
+s2 = "Hello"
+print(s1 is s2) # True
+
+l1 = [1, 2, 3]
+l2 = [1, 2, 3]
+print(l1 is l2) # False
+
+i1 = 256
+i2 = 255 + 1
+print(i1 is i2) # True
+
+i1 = 257
+i2 = 256 + 1
+print(i1 is i2) # False
+
+i1 = 257
+i2 = 257
+print(i1 is i2) # True
+```
+
 ## Input과 string 비교
 > [problem4의 no_4](https://github.com/luckycontrol/python-basics/blob/master/problem3/no_4.py)에서 확인한 issue
 ```python
