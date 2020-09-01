@@ -1,4 +1,4 @@
-jong# PYTHON - BASICS
+# PYTHON - BASICS
 
 > 기억하고 싶은 것들
 
