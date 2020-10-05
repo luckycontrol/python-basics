@@ -23,9 +23,12 @@ def run():
     """
 
     p = re.compile(r"</?\w*\s?\w*=?'?\w*:?/?/?-?\w*.?\w*.?:?#?\w*'?>")
+    p2 = re.compile(r"<.*>?")
     m = p.findall(s)
+    m2 = p2.findall(s)
 
     print(m)
+    print(m2)
 
     for word in m:
         s = s.replace(word, '')
