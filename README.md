@@ -2,6 +2,50 @@
 
 > 기억하고 싶은 것들
 
+## 심볼 테이블 ( Symbol Table )
+> 파이썬에서 객체의 이름과 주소를 딕셔너리 형태로 저장하는 것을 '심볼 테이블' 이라고 한다.
+
+### 심볼 테이블이란,
+1. 변수의 이름과 데이터의 주소를 저장하는 테이블
+2. Global table과 Local table이 있다.
+3. 테이블 내용은 딕셔너리 형태.
+
+> Local Table은 객체가 존재하는동안 일시적으로 존재하다 사라진다.
+
+심볼테이블이 존재한다는 것은 객체의 확장이 가능하다는 것이다.
+> 내장 함수는 심볼테이블이 존재하지 않고, 내장 클래스의 객체는 심볼테이블이 존재하지만 확장 불가능하다.
+
+ ![screensh](/SymbolTable.PNG)
+ 
+### 객체 비교,
+20글자 이하의 문자열, -5 ~ 256 내의 값은 Optimization를 위하여 이미 해당 값의 객체가 생성되었다면, 그 값으로 연결시켜준다.  
+리스트와 튜플의 경우 값이 같아도 다른 객체를 참조한다.    
+```python
+i1 = 10
+i2 = 10
+print(i1 is i2) # True
+
+s1 = "Hello"
+s2 = "Hello"
+print(s1 is s2) # True
+
+l1 = [1, 2, 3]
+l2 = [1, 2, 3]
+print(l1 is l2) # False
+
+i1 = 256
+i2 = 255 + 1
+print(i1 is i2) # True
+
+i1 = 257
+i2 = 256 + 1
+print(i1 is i2) # False
+
+i1 = 257
+i2 = 257
+print(i1 is i2) # True
+```
+
 ## Input과 string 비교
 > [problem4의 no_4](https://github.com/luckycontrol/python-basics/blob/master/problem3/no_4.py)에서 확인한 issue
 ```python
@@ -45,7 +89,7 @@ print(reduce(lambda x, y: x + y, arr1))
 대문자로 사용된 것은 소문자의 반대임을 추측할 수 있다.  
 
 
-> **Raw String**을 사용하는 이유
+> **Raw String**을 사용하는 이유  
 정규식 Raw String
 
 만약 백슬래시 두개를 표현해야 한다면 ex) \\\
@@ -77,3 +121,66 @@ round(float_number, 2)
 round(float_number, 7)
 
 ``` 
+
+## Python Virtual Environment ( Isolation Tool )
+> 하나의 파이썬 설치가 모든 응용프로그램의 요구 사항을 충족시켜 줄 수 없다.  
+>A는 1.0 버전이 필요하지만, B는 2.0이 필요한 경우..
+
+**가상환경 설치 방법**
+1. 프로젝트 폴더 생성 후 진입
+2. python3 -m venv [가상환경이름] ex) python3 -m venv venv
+3. source [가상환경이름]/bin/activate  
+  
+위 작업 이후 쉘이 (venv) $python3로 변경됨  
+  
+deactivate 으로 환경 나가기
+
+> pip로 패키지 관리  
+
+[serach], [install], [uninstall], [freeze]등의 부속명령어가 있다.  
+```commandline
+pip install novas
+```  
+패키지 이름 뒤에 **==** 과 버전 번호를 붙여 특정 버전의 패키지를 설치할 수 있다.
+```commandline
+pip install requests==2.6.0
+```  
+패키지를 최신 버전으로 업그레이드 하기
+```commandline
+pip install --upgrade [패키지이름]
+```
+가상환경에 설치된 패키지 목록 표시
+```commandline
+pip list
+```
+
+## Python DB 연결 (MariaDB)
+> 파이썬과 MariaDB 연결
+
+1. PyMySQL 모듈 설치
+2. 파이썬과 DB 연결  
+```python
+import pymysql
+
+# db connection 열기
+db = pymysql.connect(
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='passwd',
+    db='db',
+    charset='utf8',
+    autocommit=True
+)
+
+# cursor object로 db와의 작업을 수행한다.
+cursor = db.cursor()
+# show tables 쿼리 실행
+cursor.execute("show tables")
+# fetchall()로 모든 테이블 정보를 Fetch
+data = cursor.fetchall()
+
+print(data)
+
+db.close()
+```
